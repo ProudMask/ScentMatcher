@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfume Matching Results</title>
+</head>
+<body>
+    <h1>Perfume Matching Results</h1>
+    <ul>
+        {% for match in matches %}
+        <li>
+            <strong>Name:</strong> {{ match.name }}<br>
+            <strong>Brand:</strong> {{ match.brand }}<br>
+            <strong>Notes:</strong> {{ match.notes }}<br>
+            <strong>Price:</strong> ${{ match.price }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
