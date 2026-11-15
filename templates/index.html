@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Perfume Matching</title>
-</head>
-<body>
-    <h1>Welcome to Perfume Matching</h1>
-    <form method="POST" action="/search">
-        <label for="perfume_name">Enter your favorite perfume:</label>
-        <input type="text" name="perfume_name" id="perfume_name" required>
-        <button type="submit">Search</button>
-    </form>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ScentMatcher</title></head>
+<body><h1>ScentMatcher</h1><p>Find alternatives by shared fragrance notes.</p>
+{% if error %}<p role="alert">{{ error }}</p>{% endif %}
+<form method="post" action="{{ url_for('search_perfumes') }}"><label for="perfume_name">Perfume name</label>
+<input id="perfume_name" name="perfume_name" required maxlength="255"><button>Find alternatives</button></form>
+<p>Demo example: Demo Rose</p></body></html>
