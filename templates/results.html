@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Perfume Matching Results</title>
-</head>
-<body>
-    <h1>Perfume Matching Results</h1>
-    <ul>
-        {% for match in matches %}
-        <li>
-            <strong>Name:</strong> {{ match.name }}<br>
-            <strong>Brand:</strong> {{ match.brand }}<br>
-            <strong>Notes:</strong> {{ match.notes }}<br>
-            <strong>Price:</strong> ${{ match.price }}<br>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ScentMatcher results</title></head>
+<body><h1>Perfume alternatives</h1>
+{% if source %}<h2>Similar notes to {{ source.name }}</h2>{% endif %}
+{% if message %}<p role="status">{{ message }}</p>{% endif %}
+{% for choice in choices %}<form method="post" action="{{ url_for('search_perfumes') }}"><button name="perfume_name" value="{{ choice.name }}">{{ choice.name }} — {{ choice.brand }}</button></form>{% endfor %}
+<ul>{% for match in matches %}<li><h2>{{ match.perfume.name }}</h2><p>{{ match.perfume.brand }}</p><p>Notes: {{ match.perfume.notes }}</p><p>Shared notes: {{ match.shared_notes|join(', ') }}</p><p>Note overlap: {{ '%.1f'|format(match.score * 100) }}%</p></li>{% endfor %}</ul>
+<p>This score measures listed-note overlap; it is not a probability or a measured similarity in smell.</p>
+<a href="{{ url_for('index') }}">Search again</a></body></html>
